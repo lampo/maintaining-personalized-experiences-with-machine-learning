@@ -43,6 +43,10 @@ class SecureBucket(Bucket):
         kwargs = self.override_configuration(
             kwargs, "block_public_access", BlockPublicAccess.BLOCK_ALL
         )
+        # NOT IN ORIGINAL PROJECT
+        kwargs = self.override_configuration(
+            kwargs, "event_bridge_enabled", True
+        )
 
         super().__init__(scope, construct_id, **kwargs)
 
