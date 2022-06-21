@@ -55,6 +55,10 @@ WORKFLOW_PARAMETERS = {
 WORKFLOW_CONFIG_DEFAULT = {
     "timeStarted": datetime.datetime.utcnow().strftime("%Y-%m-%dT%H:%M:%SZ")
 }
+FEATURE_TRANSFORMATION_PARAMETERS_MAPPING = {
+    "min_user_history_length_percentile": "min_hist_length_percentile",
+    "max_user_history_length_percentile": "max_hist_length_percentile",
+}
 
 
 class Arity(Enum):
@@ -292,6 +296,13 @@ class PersonalizeResource:
                 continue
             if expected_key in WORKFLOW_PARAMETERS:
                 continue
+
+            # replace new solution feature transformation parameter names with old ones to match what Personalize does
+            if self.resource == "solution" and expected_key == "solutionConfig" and expected_value.get('featureTransformationParameters'):
+                feature_transforms = expected_value['featureTransformationParameters']
+                for key in FEATURE_TRANSFORMATION_PARAMETERS_MAPPING:
+                    if key in feature_transforms:
+                        feature_transforms[FEATURE_TRANSFORMATION_PARAMETERS_MAPPING[key]] = feature_transforms.pop(key)
 
             if actual_value != expected_value:
                 mismatch.append(
