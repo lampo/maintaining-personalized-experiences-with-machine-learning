@@ -18,6 +18,5 @@ printf "\n> Starting deploy script\n"
 printf "\n> Running deploy as %s\n" "${DEPLOYMENT_ROLE}"
 
 printf "\n> Running CDK deploy as %s\n" "${CFN_SERVICE_ROLE}"
-cdk synth
-#cdk diff --role-arn "${CFN_SERVICE_ROLE}"
-#cdk deploy --role-arn "${CFN_SERVICE_ROLE}"
+cdk diff --role-arn "${CFN_SERVICE_ROLE}"
+cdk deploy --role-arn "${CFN_SERVICE_ROLE}"
