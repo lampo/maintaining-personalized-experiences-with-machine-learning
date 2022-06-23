@@ -1,3 +1,4 @@
+# TODO: Create Python 3.9 Base Images
 FROM 674907502808.dkr.ecr.us-east-1.amazonaws.com/systems-engineering/amazonlinux2:0.1.1-builder as builder
 
 ARG PYTHON_VERSION=3.9.13
@@ -49,7 +50,9 @@ RUN python3 -m pip install \
     pipenv==${PIPENV_VERSION} \
     safety==${SAFETY_VERSION}
 
-
+##############################
+# Production image
+##############################
 FROM 674907502808.dkr.ecr.us-east-1.amazonaws.com/ws-docker-base-amazonlinux2:22
 
 ARG PYTHON_VERSION=3.9.13
@@ -60,14 +63,8 @@ ENV NO_GENERATE_CERTIFICATES=1
 # Ensure we're root to install system dependencies
 USER root
 
-# Install system dependencies for python and java
-RUN yum install -y \
-    gcc \
-    openssl-devel \
-    bzip2-devel \
-    libffi-devel \
-    wget \
-    java-11-amazon-corretto-headless
+# Install system dependencies for java
+RUN yum install -y java-11-amazon-corretto-headless
 
 # Install CDK CLI
 # TODO: Needs to be node 16
