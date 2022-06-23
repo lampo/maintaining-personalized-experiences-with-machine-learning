@@ -1,4 +1,5 @@
 avro==1.10.2
+awscli
 black
 boto3
 aws_cdk_lib==2.7.0
