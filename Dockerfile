@@ -53,6 +53,7 @@ RUN python3 -m pip install \
 ##############################
 # Production image
 ##############################
+# See for dependency requirements: https://github.com/lampo/maintaining-personalized-experiences-with-machine-learning#prerequisites
 FROM 674907502808.dkr.ecr.us-east-1.amazonaws.com/ws-docker-base-amazonlinux2:22
 
 ARG PYTHON_VERSION=3.9.13
@@ -65,7 +66,6 @@ USER root
 
 # Install system dependencies for java
 RUN yum install -y java-11-amazon-corretto-headless
-
 # Install CDK CLI
 # TODO: Needs to be node 16
 COPY bin/setup_14.x /app/setup
@@ -74,7 +74,6 @@ RUN bash /app/setup \
     && npm -g i yarn \
     && rm -rf /app/setup \
     && npm install -g aws-cdk@2.12.0
-
 # Copy installed python runtime from builder stage
 ENV PATH="/home/docker/python-${PYTHON_VERSION}/bin:${PATH}"
 COPY --from=builder /home/docker/python-${PYTHON_VERSION} /home/docker/python-${PYTHON_VERSION}
