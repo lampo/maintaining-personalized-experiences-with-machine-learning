@@ -60,6 +60,11 @@ CONFIG = {
         "default": "omit",
         "as": "iso8601",
     },
+    "tags": {
+        "source": "event",
+        "path": "workflowConfig.tags",
+        "default": "omit",
+    },
 }
 logger = Logger()
 tracer = Tracer()
