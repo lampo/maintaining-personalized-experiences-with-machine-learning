@@ -54,7 +54,7 @@ RUN python3 -m pip install \
 # Production image
 ##############################
 # See for dependency requirements: https://github.com/lampo/maintaining-personalized-experiences-with-machine-learning#prerequisites
-FROM 674907502808.dkr.ecr.us-east-1.amazonaws.com/ws-docker-base-amazonlinux2:22
+FROM 674907502808.dkr.ecr.us-east-1.amazonaws.com/systems-engineering/amazonlinux2:0.1.1
 
 ARG PYTHON_VERSION=3.9.13
 
