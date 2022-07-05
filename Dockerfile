@@ -86,9 +86,7 @@ RUN python -m virtualenv .venv
 COPY . /app
 RUN chown -R docker:docker /app
 
-RUN source /app/.venv/bin/activate \
-    && cd /app/source \
-    && python -m pip install -r requirements-dev.txt
+RUN /app/.venv/bin/python3 -m pip install -r /app/source/requirements-dev.txt
 
 USER docker
 
