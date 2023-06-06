@@ -1,0 +1,9 @@
+apiVersion: backstage.io/v1alpha1
+kind: Component
+metadata:
+  name: maintaining-personalized-experiences-with-machine-learning
+  annotations:
+    github.com/project-slug: lampo/maintaining-personalized-experiences-with-machine-learning
+spec:
+  type: general
+  lifecycle: production
